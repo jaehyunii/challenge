@@ -29,4 +29,13 @@ public class UserController {
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
+    @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity login(@RequestBody UserRequest request){
+        log.info("userId = {}, userPwd = {}, userName = {}", request.getUserId(), request.getUserPwd(), request.getUserName());
+        if(userService.login(request.getUserId(), request.getUserPwd()).equals("Success")) {
+            return new ResponseEntity("ok", HttpStatus.OK);
+        }
+        return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    }
+
 }
