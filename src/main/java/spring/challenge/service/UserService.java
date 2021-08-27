@@ -37,4 +37,7 @@ public class UserService {
         return "Failed";
     }
 
+    public Optional<User> getUserFromUserId(String userId) {
+        return userRepository.findByUserId(userId);
+    }
 }
